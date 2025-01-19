@@ -37,7 +37,7 @@ if not st.session_state["submitted"]:
     )
 
     with st.form("survey_form"):
-        LinkedIn = st.text_input("please provide a link to your LinkedIn profile :)")
+        LinkedIn = st.text_input("please provide a link t")
 
         st.write("Enter your top 3 professional skills:")
         skill1 = st.text_input("1. ")
