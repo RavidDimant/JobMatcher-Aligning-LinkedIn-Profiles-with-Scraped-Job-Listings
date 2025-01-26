@@ -29,7 +29,7 @@ if "submitted" not in st.session_state:
     st.session_state["submitted"] = False
 
 if not st.session_state["submitted"]:
-    image_path = r"C:/Users/user/PycharmProjects/Scrapers/logo.png"
+    image_path = r"image_path = r"https://raw.githubusercontent.com/RavidDimant/JobMatcher-Aligning-LinkedIn-Profiles-with-Scraped-Job-Listings/main/Survey/logo.png"
     image_base64 = get_base64_image(image_path)
 
     st.markdown(
