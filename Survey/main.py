@@ -63,6 +63,12 @@ if "submitted" not in st.session_state:
             """,
             unsafe_allow_html=True,
         )
+
+        education = st.selectbox(
+            "What is your highest level of education?",
+            ["High School", "Undergraduate", "Bachelor's", "Master's", "PhD", "Other"]
+        )
+        
         skill1 = st.text_input("1. ")
         skill2 = st.text_input("2. ")
         skill3 = st.text_input("3. ")
@@ -78,11 +84,20 @@ if "submitted" not in st.session_state:
             ["Independently", "Collaboratively", "Leadership"]
         )
 
-        education = st.selectbox(
-            "What is your highest level of education?",
-            ["High School", "Undergraduate", "Bachelor's", "Master's", "PhD", "Other"]
+        st.markdown(
+            """
+            <div style="text-align: center; font-size: 18px; font-weight: bold;">
+                What are your favorite hobbies?
+            </div>
+            """,
+            unsafe_allow_html=True,
         )
+        hobbies = st.text_input("")
+        hobby1 = st.text_input("1. ")
+        hobby2 = st.text_input("2. ")
+        hobby3 = st.text_input("3. ")
 
+        hobbies = f"{hobby1}, {hobby2}, {hobby3}"
         learning = st.radio(
             "Are you interested in learning new skills or technologies regularly?",
             ["Yes", "No"]
@@ -94,16 +109,14 @@ if "submitted" not in st.session_state:
         )
 
         location = st.selectbox(
-            "Are you comfortable working remotely, in-office, or in a hybrid setup?",
-            ["Remote", "In-Office", "Hybrid"]
+            "I prefer working:",
+            ["Remotely", "In-Office", "Hybrid"]
         )
 
         pay_range = st.selectbox(
-            "What is your expected pay range for a role that aligns with your skills and experience?",
+            "What is your expected pay range?",
             ["Doesn't Matter", "$40,000–$60,000", "$60,000–$80,000", "$80,000–$100,000", "$100,000+"]
         )
-
-        hobbies = st.text_input("What are your favorite hobbies or activities?")
 
         submitted = st.form_submit_button("Submit")
 
