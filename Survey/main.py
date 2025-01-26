@@ -1,3 +1,33 @@
+import streamlit as st
+import pandas as pd
+import os
+import base64
+
+def get_base64_image(image_path):
+    with open(image_path, "rb") as img_file:
+        return base64.b64encode(img_file.read()).decode()
+
+RESPONSES_FILE = "responses.csv"
+
+if not os.path.exists(RESPONSES_FILE):
+    df = pd.DataFrame(columns=[
+        "LinkedIn",
+        "Top_3_Skills",
+        "Years_of_Experience",
+        "experience_description",
+        "Preferred_Work_Style",
+        "Highest_Education",
+        "Willingness_to_Learn",
+        "Work_Environment_Preference",
+        "Preferred_Work_Location",
+        "Pay_Range",
+        "Hobbies",
+    ])
+    df.to_csv(RESPONSES_FILE, index=False)
+
+if "submitted" not in st.session_state:
+    st.session_state["submitted"] = False
+
 if not st.session_state["submitted"]:
     image_path = "https://raw.githubusercontent.com/RavidDimant/JobMatcher-Aligning-LinkedIn-Profiles-with-Scraped-Job-Listings/main/Survey/logo.png"
 
@@ -114,3 +144,15 @@ if not st.session_state["submitted"]:
 
                 st.session_state["submitted"] = True
                 st.experimental_rerun()
+
+
+else:
+    st.markdown(
+        """
+        <div style="text-align: center; margin-top: 50px; padding: 20px; border: 2px solid #FFA500; border-radius: 15px; background-color: #FFF5E6;">
+            <h1 style="color: #FF4500;">✨ Dream Job Loading... ✨</h1>
+            <p style="font-size: 18px; color: #666;">Please wait while we match your answers to the perfect job opportunities! 🧑‍💻</p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
