@@ -28,8 +28,8 @@ if not os.path.exists(RESPONSES_FILE):
 if "submitted" not in st.session_state:
     st.session_state["submitted"] = False
 
-if not st.session_state["submitted"]:
-    image_path = r"image_path = r"https://raw.githubusercontent.com/RavidDimant/JobMatcher-Aligning-LinkedIn-Profiles-with-Scraped-Job-Listings/main/Survey/logo.png"
+# Updated image path pointing to the raw file
+    image_path = r"https://raw.githubusercontent.com/RavidDimant/JobMatcher-Aligning-LinkedIn-Profiles-with-Scraped-Job-Listings/main/Survey/logo.png"
     image_base64 = get_base64_image(image_path)
 
     st.markdown(
