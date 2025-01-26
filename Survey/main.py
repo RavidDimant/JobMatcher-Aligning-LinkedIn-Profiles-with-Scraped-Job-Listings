@@ -37,7 +37,7 @@ if not st.session_state["submitted"]:
     )
 
     with st.form("survey_form"):
-        LinkedIn = st.text_input("please provide a link to your LinkedIn profile :)")
+        LinkedIn = st.text_input("please provide a link to your LinkedIn profile:")
 
         st.write("Enter your top 3 professional skills:")
         skill1 = st.text_input("1. ")
@@ -48,7 +48,7 @@ if not st.session_state["submitted"]:
 
         experience = st.slider("How many years of experience do you have in your field?", 0, 40, 0)
 
-        description = st.text_input("Can you briefly describe the type of projects you have worked on in your career?")
+        description = st.text_input("Tell us about an interesting project you worked on lately:")
 
         work_style = st.selectbox(
             "Do you prefer working independently, collaboratively, or in a leadership role?",
