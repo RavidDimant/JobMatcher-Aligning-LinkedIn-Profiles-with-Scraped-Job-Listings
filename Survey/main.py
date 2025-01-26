@@ -97,6 +97,7 @@ if not st.session_state["submitted"]:
         hobby3 = st.text_input("3. ")
 
         hobbies = f"{hobby1}, {hobby2}, {hobby3}"
+        
         learning = st.radio(
             "Are you interested in learning new skills or technologies regularly?",
             ["Yes", "No"]
@@ -154,3 +155,4 @@ else:
         """,
         unsafe_allow_html=True
     )
+
