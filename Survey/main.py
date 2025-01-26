@@ -55,6 +55,11 @@ if "submitted" not in st.session_state:
 
         LinkedIn = st.text_input("Please provide a link to your LinkedIn profile:")
 
+        education = st.selectbox(
+            "What is your highest level of education?",
+            ["High School", "Undergraduate", "Bachelor's", "Master's", "PhD", "Other"]
+        )
+
         st.markdown(
             """
             <div style="text-align: center; font-size: 18px; font-weight: bold;">
@@ -63,12 +68,6 @@ if "submitted" not in st.session_state:
             """,
             unsafe_allow_html=True,
         )
-
-        education = st.selectbox(
-            "What is your highest level of education?",
-            ["High School", "Undergraduate", "Bachelor's", "Master's", "PhD", "Other"]
-        )
-        
         skill1 = st.text_input("1. ")
         skill2 = st.text_input("2. ")
         skill3 = st.text_input("3. ")
