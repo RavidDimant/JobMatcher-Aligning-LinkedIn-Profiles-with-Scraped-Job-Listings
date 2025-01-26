@@ -28,6 +28,7 @@ if not os.path.exists(RESPONSES_FILE):
 if "submitted" not in st.session_state:
     st.session_state["submitted"] = False
 
+if not st.session_state["submitted"]:
     image_path = "https://raw.githubusercontent.com/RavidDimant/JobMatcher-Aligning-LinkedIn-Profiles-with-Scraped-Job-Listings/main/Survey/logo.png"
 
     st.markdown(
@@ -86,12 +87,11 @@ if "submitted" not in st.session_state:
         st.markdown(
             """
             <div style="text-align: center; font-size: 18px; font-weight: bold;">
-                What are your favorite hobbies?
+                Enter your top 3 hobbies:
             </div>
             """,
             unsafe_allow_html=True,
         )
-        hobbies = st.text_input("")
         hobby1 = st.text_input("1. ")
         hobby2 = st.text_input("2. ")
         hobby3 = st.text_input("3. ")
