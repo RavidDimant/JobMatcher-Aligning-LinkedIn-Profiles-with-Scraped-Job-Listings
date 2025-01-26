@@ -1,6 +1,11 @@
 import streamlit as st
 import pandas as pd
 import os
+import base64
+
+def get_base64_image(image_path):
+    with open(image_path, "rb") as img_file:
+        return base64.b64encode(img_file.read()).decode()
 
 RESPONSES_FILE = "responses.csv"
 
@@ -24,22 +29,42 @@ if "submitted" not in st.session_state:
     st.session_state["submitted"] = False
 
 if not st.session_state["submitted"]:
+    image_path = r"C:\exam scans\lab\project\survey\cupidlogo.png"
+    image_base64 = get_base64_image(image_path)
+
     st.markdown(
-        """
-        <div style="background-color:#f9f9f9; padding:10px; border-radius:10px; text-align:center; box-shadow: 2px 2px 5px rgba(0,0,0,0.1);">
-            <h1 style="color:#4CAF50; font-family:Arial, Helvetica, sans-serif;">🎯 JOB SURVEY 🎯</h1>
-            <p style="color:#555; font-size:18px; font-family:Verdana, Geneva, sans-serif;">
-                Find your dream job by answering <strong>ONLY 10</strong> quick and simple questions!
-            </p>
+        f"""
+        <div style="text-align: center; margin-top: 20px;">
+            <img src="data:image/png;base64,{image_base64}" alt="Career Cupid Logo" 
+            style="width: 100%; max-width: 800px; height: auto; border-radius: 20px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
         </div>
         """,
         unsafe_allow_html=True,
     )
 
     with st.form("survey_form"):
-        LinkedIn = st.text_input("please provide a link to your LinkedIn profile:")
+        # Define a style for labels
+        LABEL_STYLE = """
+        <style>
+            .stTextInput > label, .stSelectbox > label, .stSlider > label, .stRadio > label {
+                font-size: 18px;
+                font-family: Arial, Helvetica, sans-serif;
+                font-weight: bold;
+            }
+        </style>
+        """
+        st.markdown(LABEL_STYLE, unsafe_allow_html=True)
 
-        st.write("Enter your top 3 professional skills:")
+        LinkedIn = st.text_input("Please provide a link to your LinkedIn profile:")
+
+        st.markdown(
+            """
+            <div style="text-align: center; font-size: 18px; font-weight: bold;">
+                Enter your top 3 professional skills:
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
         skill1 = st.text_input("1. ")
         skill2 = st.text_input("2. ")
         skill3 = st.text_input("3. ")
@@ -48,7 +73,7 @@ if not st.session_state["submitted"]:
 
         experience = st.slider("How many years of experience do you have in your field?", 0, 40, 0)
 
-        description = st.text_input("Tell us about an interesting project you worked on lately:")
+        description = st.text_input("Tell us about an interesting project you worked on lately:")
 
         work_style = st.selectbox(
             "Do you prefer working independently, collaboratively, or in a leadership role?",
