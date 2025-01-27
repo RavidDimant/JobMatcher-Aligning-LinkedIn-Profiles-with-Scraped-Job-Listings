@@ -56,11 +56,6 @@ if not st.session_state["submitted"]:
 
         LinkedIn = st.text_input("Please provide a link to your LinkedIn profile:")
 
-        education = st.selectbox(
-            "What is your highest level of education?",
-            ["High School", "Undergraduate", "Bachelor's", "Master's", "PhD", "Other"]
-        )
-
         st.markdown(
             """
             <div style="text-align: center; font-size: 18px; font-weight: bold;">
@@ -72,11 +67,11 @@ if not st.session_state["submitted"]:
         skill1 = st.text_input("Skill 1: ")
         skill2 = st.text_input("Skill 2: ")
         skill3 = st.text_input("Skill 3: ")
+        skill4 = st.text_input("Skill 4: ")
+        skill5 = st.text_input("Skill 5: ")
 
-        skills = f"{skill1}, {skill2}, {skill3}"
-
-        experience = st.slider("How many years of experience do you have in your field?", 0, 40, 0)
-
+        skills = f"{skill1}, {skill2}, {skill3}, {skill4}, {skill5}"
+        
         description = st.text_input("Tell us about an interesting project you worked on lately:")
 
         work_style = st.selectbox(
