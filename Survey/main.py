@@ -92,24 +92,10 @@ if not st.session_state["submitted"]:
         hobby3 = st.text_input("Hobby 3: ")
 
         hobbies = f"{hobby1}, {hobby2}, {hobby3}"
-        learning = st.radio(
-            "Are you interested in learning new skills or technologies regularly?",
-            ["Yes", "No"]
-        )
-
-        work_env = st.selectbox(
-            "What type of work environment do you prefer?",
-            ["Quiet", "Collaborative", "Fast-Paced", "Flexible"]
-        )
 
         location = st.selectbox(
             "I prefer working:",
             ["Remotely", "In-Office", "Hybrid"]
-        )
-
-        pay_range = st.selectbox(
-            "What is your expected pay range?",
-            ["Doesn't Matter", "$40,000–$60,000", "$60,000–$80,000", "$80,000–$100,000", "$100,000+"]
         )
 
         # Ensure the submit button is within the form
