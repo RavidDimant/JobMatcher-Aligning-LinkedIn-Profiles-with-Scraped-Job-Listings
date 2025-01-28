@@ -9,18 +9,14 @@ def get_base64_image(image_path):
 
 RESPONSES_FILE = "responses.csv"
 
+# Ensure the CSV file exists with correct columns
 if not os.path.exists(RESPONSES_FILE):
     df = pd.DataFrame(columns=[
         "LinkedIn",
         "Top_3_Skills",
-        "Years_of_Experience",
         "experience_description",
         "Preferred_Work_Style",
-        "Highest_Education",
-        "Willingness_to_Learn",
-        "Work_Environment_Preference",
         "Preferred_Work_Location",
-        "Pay_Range",
         "Hobbies",
     ])
     df.to_csv(RESPONSES_FILE, index=False)
@@ -67,16 +63,19 @@ if not st.session_state["submitted"]:
         skill1 = st.text_input("Skill 1: ")
         skill2 = st.text_input("Skill 2: ")
         skill3 = st.text_input("Skill 3: ")
-        skill4 = st.text_input("Skill 4: ")
-        skill5 = st.text_input("Skill 5: ")
 
-        skills = f"{skill1}, {skill2}, {skill3}, {skill4}, {skill5}"
+        skills = ", ".join(filter(None, [skill1, skill2, skill3]))  # Remove empty inputs
         
-        description = st.text_input("Tell us about an interesting project you worked on lately:")
+        description = st.text_area("Tell us about an interesting project you worked on lately:")
 
         work_style = st.selectbox(
             "Do you prefer working independently, collaboratively, or in a leadership role?",
             ["Independently", "Collaboratively", "Leadership"]
+        )
+
+        location = st.selectbox(
+            "I prefer working:",
+            ["Remotely", "In-Office", "Hybrid"]
         )
 
         st.markdown(
@@ -91,12 +90,7 @@ if not st.session_state["submitted"]:
         hobby2 = st.text_input("Hobby 2: ")
         hobby3 = st.text_input("Hobby 3: ")
 
-        hobbies = f"{hobby1}, {hobby2}, {hobby3}"
-
-        location = st.selectbox(
-            "I prefer working:",
-            ["Remotely", "In-Office", "Hybrid"]
-        )
+        hobbies = ", ".join(filter(None, [hobby1, hobby2, hobby3]))  # Remove empty inputs
 
         # Ensure the submit button is within the form
         submitted = st.form_submit_button("Submit")
@@ -108,14 +102,9 @@ if not st.session_state["submitted"]:
                 new_response = pd.DataFrame({
                     "LinkedIn": [LinkedIn],
                     "Top_3_Skills": [skills],
-                    "Years_of_Experience": [experience],
                     "experience_description": [description],
                     "Preferred_Work_Style": [work_style],
-                    "Highest_Education": [education],
-                    "Willingness_to_Learn": [learning],
-                    "Work_Environment_Preference": [work_env],
                     "Preferred_Work_Location": [location],
-                    "Pay_Range": [pay_range],
                     "Hobbies": [hobbies],
                 })
 
@@ -126,12 +115,11 @@ if not st.session_state["submitted"]:
                 st.session_state["submitted"] = True
                 st.experimental_rerun()
 
-
 else:
     st.markdown(
         """
         <div style="text-align: center; margin-top: 50px; padding: 20px; border: 2px solid #FFA500; border-radius: 15px; background-color: #FFF5E6;">
-            <h1 style="color: #FF4500;">✨ Thanks! Your response has been submitted successfully  ✨</h1>
+            <h1 style="color: #FF4500;">✨ Thanks! Your response has been submitted successfully ✨</h1>
         </div>
         """,
         unsafe_allow_html=True
