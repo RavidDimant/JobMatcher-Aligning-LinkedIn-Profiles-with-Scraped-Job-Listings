@@ -15,7 +15,6 @@ if not os.path.exists(RESPONSES_FILE):
         "LinkedIn",
         "Top_3_Skills",
         "experience_description",
-        "Preferred_Work_Style",
         "Preferred_Work_Location",
         "Hobbies",
     ])
@@ -68,11 +67,6 @@ if not st.session_state["submitted"]:
         
         description = st.text_area("Tell us about an interesting project you worked on lately:")
 
-        work_style = st.selectbox(
-            "Do you prefer working independently, collaboratively, or in a leadership role?",
-            ["Independently", "Collaboratively", "Leadership"]
-        )
-
         location = st.selectbox(
             "I prefer working:",
             ["Remotely", "In-Office", "Hybrid"]
@@ -103,7 +97,6 @@ if not st.session_state["submitted"]:
                     "LinkedIn": [LinkedIn],
                     "Top_3_Skills": [skills],
                     "experience_description": [description],
-                    "Preferred_Work_Style": [work_style],
                     "Preferred_Work_Location": [location],
                     "Hobbies": [hobbies],
                 })
