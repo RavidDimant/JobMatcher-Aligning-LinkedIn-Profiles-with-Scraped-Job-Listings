@@ -15,7 +15,7 @@ if not os.path.exists(RESPONSES_FILE):
         "LinkedIn",
         "Top_3_Skills",
         "experience_description",
-        "Preferred_Work_Location",
+        "Job_Type",
         "Hobbies",
     ])
     df.to_csv(RESPONSES_FILE, index=False)
@@ -67,9 +67,9 @@ if not st.session_state["submitted"]:
         
         description = st.text_area("Tell us about an interesting project you worked on lately:")
 
-        location = st.selectbox(
-            "I prefer working:",
-            ["Remotely", "In-Office", "Hybrid"]
+        Job_Type = st.selectbox(
+            "I looking to work:",
+            ["full time", "part time", "freelance", "internship"]
         )
 
         st.markdown(
@@ -97,7 +97,7 @@ if not st.session_state["submitted"]:
                     "LinkedIn": [LinkedIn],
                     "Top_3_Skills": [skills],
                     "experience_description": [description],
-                    "Preferred_Work_Location": [location],
+                    "Job_Type": [type],
                     "Hobbies": [hobbies],
                 })
 
