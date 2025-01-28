@@ -8,7 +8,7 @@ import json
 GITHUB_USERNAME = "RavidDimant"
 REPO_NAME = "JobMatcher-Aligning-LinkedIn-Profiles-with-Scraped-Job-Listings"
 FILE_PATH = "Survey/responses.csv"
-GITHUB_TOKEN = "YOUR_GITHUB_TOKEN"  # Replace with your actual GitHub token
+GITHUB_TOKEN = "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"
 
 # GitHub API URL for the file
 API_URL = f"https://api.github.com/repos/{GITHUB_USERNAME}/{REPO_NAME}/contents/{FILE_PATH}"
