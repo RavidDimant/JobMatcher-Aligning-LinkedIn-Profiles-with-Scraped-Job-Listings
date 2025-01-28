@@ -1,15 +1,11 @@
 import streamlit as st
 import pandas as pd
 import os
-import base64
 
-def get_base64_image(image_path):
-    with open(image_path, "rb") as img_file:
-        return base64.b64encode(img_file.read()).decode()
+# Define the correct CSV file path inside the "Survey" folder
+RESPONSES_FILE = "Survey/responses.csv"
 
-RESPONSES_FILE = "responses.csv"
-
-# Ensure the CSV file exists with correct columns
+# Ensure the CSV file exists with the correct column headers
 if not os.path.exists(RESPONSES_FILE):
     df = pd.DataFrame(columns=[
         "LinkedIn",
@@ -20,10 +16,12 @@ if not os.path.exists(RESPONSES_FILE):
     ])
     df.to_csv(RESPONSES_FILE, index=False)
 
+# Manage submission state
 if "submitted" not in st.session_state:
     st.session_state["submitted"] = False
 
 if not st.session_state["submitted"]:
+    # Display the image from GitHub repo
     image_path = "https://raw.githubusercontent.com/RavidDimant/JobMatcher-Aligning-LinkedIn-Profiles-with-Scraped-Job-Listings/main/Survey/logo.png"
 
     st.markdown(
@@ -36,84 +34,81 @@ if not st.session_state["submitted"]:
         unsafe_allow_html=True,
     )
 
+    # Form to collect user responses
     with st.form("survey_form"):
-        # Define a style for labels
-        LABEL_STYLE = """
-        <style>
-            .stTextInput > label, .stSelectbox > label, .stSlider > label, .stRadio > label {
-                font-size: 18px;
-                font-family: Arial, Helvetica, sans-serif;
-                font-weight: bold;
-            }
-        </style>
-        """
-        st.markdown(LABEL_STYLE, unsafe_allow_html=True)
+        st.markdown("### **📄 Please fill out the survey**")
 
-        LinkedIn = st.text_input("Please provide a link to your LinkedIn profile:")
-
-        st.markdown(
-            """
-            <div style="text-align: center; font-size: 18px; font-weight: bold;">
-                Enter your top 3 professional skills:
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
+        # User input fields
+        LinkedIn = st.text_input("🔗 LinkedIn Profile URL:")
+        
+        st.markdown("### **🛠 Enter your top 3 professional skills:**")
         skill1 = st.text_input("Skill 1: ")
         skill2 = st.text_input("Skill 2: ")
         skill3 = st.text_input("Skill 3: ")
-
         skills = ", ".join(filter(None, [skill1, skill2, skill3]))  # Remove empty inputs
         
-        description = st.text_area("Tell us about an interesting project you worked on lately:")
+        description = st.text_area("📌 Tell us about an interesting project you worked on lately:")
 
         Job_Type = st.selectbox(
-            "I looking to work:",
+            "💼 Looking for work as:",
             ["full time", "part time", "freelance", "internship"]
         )
 
-        st.markdown(
-            """
-            <div style="text-align: center; font-size: 18px; font-weight: bold;">
-                Enter your top 3 hobbies:
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
+        st.markdown("### **🎭 Enter your top 3 hobbies:**")
         hobby1 = st.text_input("Hobby 1: ")
         hobby2 = st.text_input("Hobby 2: ")
         hobby3 = st.text_input("Hobby 3: ")
-
         hobbies = ", ".join(filter(None, [hobby1, hobby2, hobby3]))  # Remove empty inputs
 
-        # Ensure the submit button is within the form
-        submitted = st.form_submit_button("Submit")
+        # Submit button inside the form
+        submitted = st.form_submit_button("🚀 Submit Response")
 
         if submitted:
+            # Ensure LinkedIn is not empty
             if not LinkedIn:
-                st.error("LinkedIn is a required field.")
+                st.error("❌ LinkedIn profile URL is required.")
             else:
+                # Read existing responses
+                if os.path.exists(RESPONSES_FILE):
+                    existing_responses = pd.read_csv(RESPONSES_FILE)
+                else:
+                    existing_responses = pd.DataFrame(columns=[
+                        "LinkedIn", "Top_3_Skills", "experience_description", "Job_Type", "Hobbies"
+                    ])
+
+                # Create new response as DataFrame
                 new_response = pd.DataFrame({
                     "LinkedIn": [LinkedIn],
                     "Top_3_Skills": [skills],
                     "experience_description": [description],
-                    "Job_Type": [type],
+                    "Job_Type": [Job_Type],  # FIXED: Used correct variable instead of "type"
                     "Hobbies": [hobbies],
                 })
 
-                existing_responses = pd.read_csv(RESPONSES_FILE)
+                # Append new response & save to CSV
                 updated_responses = pd.concat([existing_responses, new_response], ignore_index=True)
                 updated_responses.to_csv(RESPONSES_FILE, index=False)
 
+                # Update session state to prevent resubmission
                 st.session_state["submitted"] = True
                 st.experimental_rerun()
 
 else:
+    # Thank you message after submission
     st.markdown(
         """
-        <div style="text-align: center; margin-top: 50px; padding: 20px; border: 2px solid #FFA500; border-radius: 15px; background-color: #FFF5E6;">
+        <div style="text-align: center; margin-top: 50px; padding: 20px; 
+                    border: 2px solid #FFA500; border-radius: 15px; background-color: #FFF5E6;">
             <h1 style="color: #FF4500;">✨ Thanks! Your response has been submitted successfully ✨</h1>
         </div>
         """,
         unsafe_allow_html=True
     )
+
+# Option to display all responses (for admin purposes)
+if st.checkbox("📊 Show all responses"):
+    if os.path.exists(RESPONSES_FILE):
+        df = pd.read_csv(RESPONSES_FILE)
+        st.dataframe(df)
+    else:
+        st.warning("⚠️ No responses recorded yet.")
