@@ -131,8 +131,7 @@ else:
     st.markdown(
         """
         <div style="text-align: center; margin-top: 50px; padding: 20px; border: 2px solid #FFA500; border-radius: 15px; background-color: #FFF5E6;">
-            <h1 style="color: #FF4500;">✨ Dream Job Loading... ✨</h1>
-            <p style="font-size: 18px; color: #666;">Please wait while we match your answers to the perfect job opportunities! 🧑‍💻</p>
+            <h1 style="color: #FF4500;">✨ Thanks! Your response has been submitted successfully  ✨</h1>
         </div>
         """,
         unsafe_allow_html=True
