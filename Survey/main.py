@@ -23,6 +23,8 @@ if not os.path.exists(RESPONSES_FILE):
 if "submitted" not in st.session_state:
     st.session_state["submitted"] = False
 
+ADMIN_EMAIL = "nooroshka12@gmail.com"  # Replace with your email
+
 def load_responses():
     if os.path.exists(RESPONSES_FILE):
         return pd.read_csv(RESPONSES_FILE)
@@ -128,15 +130,17 @@ else:
         unsafe_allow_html=True
     )
 
-# Show all responses option
-if st.checkbox("📊 Show all responses"):
-    df = load_responses()
-    if df.empty:
-        st.warning("⚠️ No responses recorded yet.")
-    else:
-        st.dataframe(df)
-        st.markdown(get_download_link(df), unsafe_allow_html=True)
+# Show all responses option (only for admin)
+if st.session_state.get("user_email") == ADMIN_EMAIL:
+    if st.checkbox("📊 Show all responses"):
+        df = load_responses()
+        if df.empty:
+            st.warning("⚠️ No responses recorded yet.")
+        else:
+            st.dataframe(df)
+            st.markdown(get_download_link(df), unsafe_allow_html=True)
 
+            
 # import streamlit as st
 # import pandas as pd
 # import os
@@ -166,6 +170,12 @@ if st.checkbox("📊 Show all responses"):
 #     if os.path.exists(RESPONSES_FILE):
 #         return pd.read_csv(RESPONSES_FILE)
 #     return pd.DataFrame(columns=["LinkedIn", "Top_3_Skills", "experience_description", "Job_Type", "Hobbies"])
+
+# def get_download_link(df):
+#     csv = df.to_csv(index=False)
+#     b64 = base64.b64encode(csv.encode()).decode()  # Convert to base64
+#     href = f'<a href="data:file/csv;base64,{b64}" download="responses.csv">📥 Download Responses</a>'
+#     return href
 
 # if not st.session_state["submitted"]:
 #     image_path = "https://raw.githubusercontent.com/RavidDimant/JobMatcher-Aligning-LinkedIn-Profiles-with-Scraped-Job-Listings/main/Survey/logo.png"
@@ -260,11 +270,3 @@ if st.checkbox("📊 Show all responses"):
 #         """,
 #         unsafe_allow_html=True
 #     )
-
-# # Show all responses option
-# if st.checkbox("📊 Show all responses"):
-#     df = load_responses()
-#     if df.empty:
-#         st.warning("⚠️ No responses recorded yet.")
-#     else:
-#         st.dataframe(df)
