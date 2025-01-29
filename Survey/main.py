@@ -118,9 +118,9 @@ else:
         unsafe_allow_html=True
     )
 
-    if st.checkbox("📊 Show all responses"):
-    df = load_responses()
-    if df.empty:
-        st.warning("⚠️ No responses recorded yet.")
-    else:
-        st.dataframe(df)
+if st.checkbox("📊 Show all responses"):
+df = load_responses()
+if df.empty:
+    st.warning("⚠️ No responses recorded yet.")
+else:
+    st.dataframe(df)
