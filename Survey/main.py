@@ -7,8 +7,9 @@ def get_base64_image(image_path):
     with open(image_path, "rb") as img_file:
         return base64.b64encode(img_file.read()).decode()
 
-RESPONSES_FILE = "Survey/responses.csv"
+RESPONSES_FILE = "responses.csv"
 
+# Ensure the CSV file exists with correct columns
 if not os.path.exists(RESPONSES_FILE):
     df = pd.DataFrame(columns=[
         "LinkedIn",
@@ -21,6 +22,11 @@ if not os.path.exists(RESPONSES_FILE):
 
 if "submitted" not in st.session_state:
     st.session_state["submitted"] = False
+
+def load_responses():
+    if os.path.exists(RESPONSES_FILE):
+        return pd.read_csv(RESPONSES_FILE)
+    return pd.DataFrame(columns=["LinkedIn", "Top_3_Skills", "experience_description", "Job_Type", "Hobbies"])
 
 if not st.session_state["submitted"]:
     image_path = "https://raw.githubusercontent.com/RavidDimant/JobMatcher-Aligning-LinkedIn-Profiles-with-Scraped-Job-Listings/main/Survey/logo.png"
@@ -36,6 +42,7 @@ if not st.session_state["submitted"]:
     )
 
     with st.form("survey_form"):
+        # Define a style for labels
         LABEL_STYLE = """
         <style>
             .stTextInput > label, .stSelectbox > label, .stSlider > label, .stRadio > label {
@@ -66,7 +73,7 @@ if not st.session_state["submitted"]:
         description = st.text_area("Tell us about an interesting project you worked on lately:")
 
         Job_Type = st.selectbox(
-            "I looking to work:",
+            "I am looking to work:",
             ["full time", "part time", "freelance", "internship"]
         )
 
@@ -84,6 +91,7 @@ if not st.session_state["submitted"]:
 
         hobbies = ", ".join(filter(None, [hobby1, hobby2, hobby3]))  # Remove empty inputs
 
+        # Ensure the submit button is within the form
         submitted = st.form_submit_button("Submit")
 
         if submitted:
@@ -94,17 +102,16 @@ if not st.session_state["submitted"]:
                     "LinkedIn": [LinkedIn],
                     "Top_3_Skills": [skills],
                     "experience_description": [description],
-                    "Job_Type": [type],
+                    "Job_Type": [Job_Type],
                     "Hobbies": [hobbies],
                 })
 
-                existing_responses = pd.read_csv(RESPONSES_FILE)
+                existing_responses = load_responses()
                 updated_responses = pd.concat([existing_responses, new_response], ignore_index=True)
                 updated_responses.to_csv(RESPONSES_FILE, index=False)
 
                 st.session_state["submitted"] = True
                 st.experimental_rerun()
-
 else:
     st.markdown(
         """
@@ -122,4 +129,3 @@ if st.checkbox("📊 Show all responses"):
         st.warning("⚠️ No responses recorded yet.")
     else:
         st.dataframe(df)
-
