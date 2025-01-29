@@ -128,11 +128,11 @@ else:
         unsafe_allow_html=True
     )
 
-# Show all responses option (only for admin)
-if st.checkbox("📊 Show all responses"):
-    df = load_responses()
-    if df.empty:
-        st.warning("⚠️ No responses recorded yet.")
-    else:
-        st.dataframe(df)
-        st.markdown(get_download_link(df), unsafe_allow_html=True)
+# # Show all responses option (only for admin)
+# if st.checkbox("📊 Show all responses"):
+#     df = load_responses()
+#     if df.empty:
+#         st.warning("⚠️ No responses recorded yet.")
+#     else:
+#         st.dataframe(df)
+#         st.markdown(get_download_link(df), unsafe_allow_html=True)
