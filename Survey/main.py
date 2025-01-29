@@ -23,7 +23,7 @@ if not os.path.exists(RESPONSES_FILE):
 if "submitted" not in st.session_state:
     st.session_state["submitted"] = False
 
-ADMIN_EMAIL = "nooroshka12@gmail.com"  # Replace with your email
+ADMIN_EMAIL = "ravid.dim@gmail.com"
 
 def load_responses():
     if os.path.exists(RESPONSES_FILE):
