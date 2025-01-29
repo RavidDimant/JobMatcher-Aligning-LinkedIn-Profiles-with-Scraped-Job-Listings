@@ -9,7 +9,6 @@ def get_base64_image(image_path):
 
 RESPONSES_FILE = "Survey/responses.csv"
 
-# Ensure the CSV file exists with correct columns
 if not os.path.exists(RESPONSES_FILE):
     df = pd.DataFrame(columns=[
         "LinkedIn",
@@ -37,7 +36,6 @@ if not st.session_state["submitted"]:
     )
 
     with st.form("survey_form"):
-        # Define a style for labels
         LABEL_STYLE = """
         <style>
             .stTextInput > label, .stSelectbox > label, .stSlider > label, .stRadio > label {
@@ -86,7 +84,6 @@ if not st.session_state["submitted"]:
 
         hobbies = ", ".join(filter(None, [hobby1, hobby2, hobby3]))  # Remove empty inputs
 
-        # Ensure the submit button is within the form
         submitted = st.form_submit_button("Submit")
 
         if submitted:
@@ -118,9 +115,11 @@ else:
         unsafe_allow_html=True
     )
 
+# Show all responses option
 if st.checkbox("📊 Show all responses"):
-df = load_responses()
-if df.empty:
-    st.warning("⚠️ No responses recorded yet.")
-else:
-    st.dataframe(df)
+    df = load_responses()
+    if df.empty:
+        st.warning("⚠️ No responses recorded yet.")
+    else:
+        st.dataframe(df)
+
