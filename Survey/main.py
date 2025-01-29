@@ -23,8 +23,6 @@ if not os.path.exists(RESPONSES_FILE):
 if "submitted" not in st.session_state:
     st.session_state["submitted"] = False
 
-ADMIN_EMAIL = "ravid.dim@gmail.com"
-
 def load_responses():
     if os.path.exists(RESPONSES_FILE):
         return pd.read_csv(RESPONSES_FILE)
@@ -131,11 +129,10 @@ else:
     )
 
 # Show all responses option (only for admin)
-if "email" in st.experimental_user and st.experimental_user.email == ADMIN_EMAIL:
-    if st.checkbox("📊 Show all responses"):
-        df = load_responses()
-        if df.empty:
-            st.warning("⚠️ No responses recorded yet.")
-        else:
-            st.dataframe(df)
-            st.markdown(get_download_link(df), unsafe_allow_html=True)
+if st.checkbox("📊 Show all responses"):
+    df = load_responses()
+    if df.empty:
+        st.warning("⚠️ No responses recorded yet.")
+    else:
+        st.dataframe(df)
+        st.markdown(get_download_link(df), unsafe_allow_html=True)
