@@ -83,9 +83,10 @@ Career Cupid's job matching algorithm integrates multiple techniques to improve 
    - **Job Type Preference**: Minor adjustment based on user-indicated job types.
 
 ### Scoring Function
-We compute the final match score as:
-$x^2$
-$ Score = 0.33 \cdot similarity_title + 0.225 \cdot similarity_description + 0.225 \cdot similarity_project + 0.05 \cdot score_location + 0.01 \cdot score_hobbies + 0.15 \cdot score_skills + 0.01 \cdot score_job-type $
+```math
+Score = 0.33 \cdot similarity_{title} + 0.225 \cdot similarity_{description} + 0.225 \cdot similarity_{project} 
++ 0.05 \cdot score_{location} + 0.01 \cdot score_{hobbies} + 0.15 \cdot score_{skills} + 0.01 \cdot score_{job-type}
+```
 
 This multi-faceted approach significantly improves job recommendations, aligning them with user interests and backgrounds. The model successfully avoids misleading matches (e.g., interpreting "hungry to learn" as a food industry preference) and instead prioritizes roles that better fit the candidate's expertise and aspirations.
 
