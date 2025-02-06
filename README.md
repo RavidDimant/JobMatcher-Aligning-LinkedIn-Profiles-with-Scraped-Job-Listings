@@ -59,12 +59,12 @@ The first step is to gather the data for the project. Navigate to the Scrapers d
 ```python
 # maximum runtime in seconds (10 hours), theoretically, we can scrape for years
 max_runtime = 60 * 60 * 10
-'''
+```
 We use a list of company keywords sourced from a dataset provided by the course staff, and its origin is from Brightdata. Instead of relying on the provided CSV file (company_names.csv), we suggest using the pre-defined companies_list (as shown in the comment) for convenience:
-'''python
+```python
 # companies_list = ["Amazon", "Meta", "Nvidia", "Google", "Apple", "Microsoft", "YouTube"]
-'''
-Note: You can also run the model using our pre-collected dataset, which is available via the link in the Data.md file. We've already scraped over 10,000 job listings from each site for you!
+```
+**Note**: You can also run the model using our pre-collected dataset, which is available via the link in the Data.md file. We've already scraped over 10,000 job listings from each site for you!
 
 ## Survey
 The Career Cupid survey is a Streamlit-based web form designed to collect user input for job-matching. This section provides an overview of how the survey works behind the scenes, including data handling, response validation, and storage.
