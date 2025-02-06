@@ -53,13 +53,9 @@ Traditional job-matching systems rely heavily on keyword-based searches and Link
 
 # Survey Data Processing
 
-This section describes how we process survey responses...
-(Your existing content)
 
 # Job Matching Algorithm
 
-We match users to job listings based on...
-(Your existing content)
 
 # Recommendation Model
 
