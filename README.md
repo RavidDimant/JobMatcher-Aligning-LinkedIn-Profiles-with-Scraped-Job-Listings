@@ -52,25 +52,60 @@ Through this approach, Career Cupid bridges the gap between what users can do an
 
 Traditional job-matching systems rely heavily on keyword-based searches and LinkedIn profile data, often overlooking the personal interests and aspirations that contribute to job satisfaction. *Career Cupid* introduces a novel job recommendation framework that enhances traditional job-matching techniques with user-centric personalization. By aggregating big data from multiple job platforms, including *Indeed, Dice, and SimplyHired*, and integrating a custom survey-driven approach, our system refines job recommendations beyond technical skills and job titles. To achieve this, we scrape and integrate job data without relying on external APIs, connect job listings to LinkedIn profiles to ensure relevance, and incorporate survey responses to capture users' hobbies, interests, and ideal job preferences. Leveraging AI models such as **TF-IDF, BERT embeddings, and cosine similarity**, *Career Cupid* enhances job-profile matching accuracy. The effectiveness of our approach is evaluated through data visualization and embedding-based similarity analysis. Results demonstrate that integrating **AI-driven recommendations** with **personalized survey data** leads to more meaningful and accurate job matches than traditional methods. Our findings suggest that considering user passions alongside technical skills significantly improves job satisfaction and career alignment.
 
+# Running the code
 
 ## Data Scraping
 The first step is to gather the data for the project. Navigate to the Scrapers directory and run each of the scraper files. Each scraper has a default maximum run time of 10 hours. You can adjust the amount of time you want to collect job listings from the sites (Dice, Simply Hired, and Indeed) by modifying the following line in each scraper:
 ```python
 # maximum runtime in seconds (10 hours), theoretically, we can scrape for years
 max_runtime = 60 * 60 * 10
-
-```
+'''
+We use a list of company keywords sourced from a dataset provided by the course staff, and its origin is from Brightdata. Instead of relying on the provided CSV file (company_names.csv), we suggest using the pre-defined companies_list (as shown in the comment) for convenience:
+'''python
+# companies_list = ["Amazon", "Meta", "Nvidia", "Google", "Apple", "Microsoft", "YouTube"]
+'''
 Note: You can also run the model using our pre-collected dataset, which is available via the link in the Data.md file. We've already scraped over 10,000 job listings from each site for you!
 
 ## Survey
 The Career Cupid survey is a Streamlit-based web form designed to collect user input for job-matching. This section provides an overview of how the survey works behind the scenes, including data handling, response validation, and storage.
-The main script (main.py) is responsible for:
-✅ Rendering the survey form with user inputs.
-✅ Storing responses in a structured CSV file (responses.csv).
-✅ Validating input fields to ensure complete and accurate submissions.
-✅ Allowing data export for further job-matching analysis.
 
+1️⃣ **Collecting User Data**
+✅ Top 3 Skills – Used for job-skill matching.
+✅ Experience Description – Helps refine job relevance.
+✅ Job Type Preference – Matches full-time, part-time, freelance, or internships.
+✅ Top 3 Hobbies – Adds a personal interest layer to recommendations.
 
+```python
+LinkedIn = st.text_input("Please provide a link to your LinkedIn profile:")
+skill1, skill2, skill3 = st.text_input("Skill 1"), st.text_input("Skill 2"), st.text_input("Skill 3")
+skills = ", ".join(filter(None, [skill1, skill2, skill3]))  # Remove empty inputs
+```
+
+2️⃣ **Storing & Validating Responses**
+The survey creates responses.csv if it doesn’t exist.
+Ensures required fields (e.g., LinkedIn) are filled before submission.
+
+```python
+RESPONSES_FILE = "responses.csv"
+if not os.path.exists(RESPONSES_FILE):
+    pd.DataFrame(columns=["LinkedIn", "Top_3_Skills", "experience_description", "Job_Type", "Hobbies"]).to_csv(RESPONSES_FILE, index=False)
+
+submitted = st.form_submit_button("Submit")
+if submitted and LinkedIn:
+    new_response = pd.DataFrame({"LinkedIn": [LinkedIn], "Top_3_Skills": [skills]})
+    existing_responses = pd.read_csv(RESPONSES_FILE)
+    updated_responses = pd.concat([existing_responses, new_response], ignore_index=True)
+    updated_responses.to_csv(RESPONSES_FILE, index=False)
+  ```
+3️⃣ **Exporting Responses**
+Admins can download responses for further analysis and job-matching.
+
+```python
+def get_download_link(df):
+    csv = df.to_csv(index=False)
+    b64 = base64.b64encode(csv.encode()).decode()
+    return f'<a href="data:file/csv;base64,{b64}" download="responses.csv">📥 Down
+```
 ## Job Matching Algorithm
 
 
