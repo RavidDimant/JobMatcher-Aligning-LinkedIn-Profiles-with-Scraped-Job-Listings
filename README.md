@@ -69,43 +69,8 @@ We use a list of company keywords sourced from a dataset provided by the course 
 ## Survey
 The Career Cupid survey is a Streamlit-based web form designed to collect user input for job-matching. This section provides an overview of how the survey works behind the scenes, including data handling, response validation, and storage.
 
-1️⃣ **Collecting User Data**
-✅ Top 3 Skills – Used for job-skill matching.
-✅ Experience Description – Helps refine job relevance.
-✅ Job Type Preference – Matches full-time, part-time, freelance, or internships.
-✅ Top 3 Hobbies – Adds a personal interest layer to recommendations.
-
-```python
-LinkedIn = st.text_input("Please provide a link to your LinkedIn profile:")
-skill1, skill2, skill3 = st.text_input("Skill 1"), st.text_input("Skill 2"), st.text_input("Skill 3")
-skills = ", ".join(filter(None, [skill1, skill2, skill3]))  # Remove empty inputs
-```
-
-2️⃣ **Storing & Validating Responses**
-The survey creates responses.csv if it doesn’t exist.
-Ensures required fields (e.g., LinkedIn) are filled before submission.
-
-```python
-RESPONSES_FILE = "responses.csv"
-if not os.path.exists(RESPONSES_FILE):
-    pd.DataFrame(columns=["LinkedIn", "Top_3_Skills", "experience_description", "Job_Type", "Hobbies"]).to_csv(RESPONSES_FILE, index=False)
-
-submitted = st.form_submit_button("Submit")
-if submitted and LinkedIn:
-    new_response = pd.DataFrame({"LinkedIn": [LinkedIn], "Top_3_Skills": [skills]})
-    existing_responses = pd.read_csv(RESPONSES_FILE)
-    updated_responses = pd.concat([existing_responses, new_response], ignore_index=True)
-    updated_responses.to_csv(RESPONSES_FILE, index=False)
-  ```
-3️⃣ **Exporting Responses**
-Admins can download responses for further analysis and job-matching.
-
-```python
-def get_download_link(df):
-    csv = df.to_csv(index=False)
-    b64 = base64.b64encode(csv.encode()).decode()
-    return f'<a href="data:file/csv;base64,{b64}" download="responses.csv">📥 Down
-```
+1. Click on the survey link:  <a href="https://career-cupid.streamlit.app/"> Career Cupid Survey </a>&nbsp;
+The survey is hosted on Streamlit, ensuring an interactive and user-friendly experience.
 ## Job Matching Algorithm
 
 
