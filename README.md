@@ -68,6 +68,7 @@ We use a list of company keywords sourced from a dataset provided by the course 
 
 ## Survey
 The Career Cupid survey is a Streamlit-based web form designed to collect user input for job-matching.
+
 Click on the survey link:  <a href="https://career-cupid.streamlit.app/"> Career Cupid Survey </a>&nbsp;
 ## Job Matching Algorithm
 
