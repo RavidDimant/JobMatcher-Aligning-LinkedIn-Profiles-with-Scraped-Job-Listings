@@ -100,6 +100,8 @@ This transformation demonstrates how Career Cupid refines job recommendations by
 |Sr. Optical Engineer Exterior Lighting |Copywriter |
 |Barista|  Interactive Producer     |
 
+This graph compares the LLM-based job match scores before and after incorporating survey data, showing that job recommendations improved significantly when personalized user inputs (skills, hobbies, and project descriptions) were included:
 
-
+<img src="https://github.com/RavidDimant/JobMatcher-Aligning-LinkedIn-Profiles-with-Scraped-Job-Listings/blob/main/Survey/results.jpg
+" alt="Logo" >
 
