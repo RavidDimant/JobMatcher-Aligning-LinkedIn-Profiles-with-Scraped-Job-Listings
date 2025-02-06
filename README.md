@@ -29,9 +29,9 @@
 - [Abstract](#Abstract)
 - [Install](#Install)
 - [Running the code](#Running-the-code)
- - [Data Scraping](#Data-Scraping)
- - [Survey](#Survey)
- - [Job Matching Algorithm](#Job-Matching-Algorithm) 
+  - [Data Scraping](#Data-Scraping)
+  - [Survey](#Survey)
+  - [Job Matching Algorithm](#Job-Matching-Algorithm) 
 - [Results](#Results)
 
 
