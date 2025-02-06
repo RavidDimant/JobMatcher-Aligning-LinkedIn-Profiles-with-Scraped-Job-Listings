@@ -27,9 +27,9 @@
 # Contents
 - [Overview](#Overview)
 - [Abstract](#Abstract)
-- [📊 Survey Data Processing](#Survey-Data-Processing) 
-- [🎯 Job Matching Algorithm](#Job-Matching-Algorithm) 
-- [🤖 Recommendation Model](#Recommendation-Model) 
+- [Survey Data Processing](#Survey-Data-Processing) 
+- [Job Matching Algorithm](#Job-Matching-Algorithm) 
+- [Recommendation Model](#Recommendation-Model) 
 - [Result](#Result)
 
 
@@ -51,17 +51,17 @@ Through this approach, Career Cupid bridges the gap between what users can do an
 Traditional job-matching systems rely heavily on keyword-based searches and LinkedIn profile data, often overlooking the personal interests and aspirations that contribute to job satisfaction. *Career Cupid* introduces a novel job recommendation framework that enhances traditional job-matching techniques with user-centric personalization. By aggregating big data from multiple job platforms, including *Indeed, Dice, and SimplyHired*, and integrating a custom survey-driven approach, our system refines job recommendations beyond technical skills and job titles. To achieve this, we scrape and integrate job data without relying on external APIs, connect job listings to LinkedIn profiles to ensure relevance, and incorporate survey responses to capture users' hobbies, interests, and ideal job preferences. Leveraging AI models such as **TF-IDF, BERT embeddings, and cosine similarity**, *Career Cupid* enhances job-profile matching accuracy. The effectiveness of our approach is evaluated through data visualization and embedding-based similarity analysis. Results demonstrate that integrating **AI-driven recommendations** with **personalized survey data** leads to more meaningful and accurate job matches than traditional methods. Our findings suggest that considering user passions alongside technical skills significantly improves job satisfaction and career alignment.
 
 
-# 📊 Survey Data Processing
+# Survey Data Processing
 
 This section describes how we process survey responses...
 (Your existing content)
 
-# 🎯 Job Matching Algorithm
+# Job Matching Algorithm
 
 We match users to job listings based on...
 (Your existing content)
 
-# 🤖 Recommendation Model
+# Recommendation Model
 
 # Result
 Career Cupid significantly improves job matching by incorporating AI-driven personalization beyond traditional keyword-based approaches. For example, Autumn Venson-Roscoe, a B.A. in Communication Studies graduate, was initially matched with Sr. Optical Engineer (Exterior Lighting) and Barista, roles unrelated to her expertise. After applying Career Cupid’s recommendation model, her top matches became Copywriter and Interactive Producer, aligning with her skills in social media management, marketing, and problem-solving, as well as her hobbies in photography, pop culture, and networking.
