@@ -71,6 +71,22 @@ The Career Cupid survey is a Streamlit-based web form designed to collect user i
 
 Click on the survey link:  <a href="https://career-cupid.streamlit.app/"> Career Cupid Survey </a>&nbsp;
 ## Job Matching Algorithm
+Career Cupid's job matching algorithm integrates multiple techniques to improve the relevance of job recommendations. 
+
+### Matching Process
+1. **Embedding Generation**: We compute BERT-based embeddings for job descriptions, profile 'About' sections, and job titles.
+2. **Similarity Scoring**: We calculate cosine similarity between job descriptions and user profiles, incorporating additional signals from job titles and past experience.
+3. **Location-Based Weighting**: We assign a location score based on whether the job is in the same city (1.0) or state (0.5) as the candidate.
+4. **Survey Personalization**: To further refine recommendations, we introduce personalized scoring based on survey responses:
+   - **Projects**: Cosine similarity between past projects and job descriptions.
+   - **Skills & Hobbies**: Weighted match percentage between user-provided skills/hobbies and job requirements.
+   - **Job Type Preference**: Minor adjustment based on user-indicated job types.
+
+### Scoring Function
+We compute the final match score as:
+$x^2$
+Score = 0.33 x similarity_title + 0.225 × similarity_description + 0.225 × similarity_project + 0.05 × score_location + 0.01 × score_hobbies + 0.15 × score_skills + 0.01 × score_job-type
+
 
 
 # Results
