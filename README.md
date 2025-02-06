@@ -7,8 +7,7 @@
     <a href="https://www.linkedin.com/in/noor-shahin-254502344/"> Noor Shahin</a>&nbsp;,&nbsp;
     <a href="https://www.linkedin.com/in/ravid-dimant-48599224a/">Ravid Dimant</a>&nbsp;&nbsp;
     <br/> 
-    Technion - Israel Institute of Technology
-,Cornell Tech, Intuit<br/> 
+    Technion - Israel Institute of Technology<br/> 
 <br>
     <a href="https://career-cupid.streamlit.app/">Survey</a> |
     <a href="https://youtu.be/dMre1jKHiUU?si=0qYKhWtw6YWmRANX">Trailer</a> |
@@ -21,7 +20,7 @@
 <br>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/RavidDimant/JobMatcher-Aligning-LinkedIn-Profiles-with-Scraped-Job-Listings/main/Survey/logo.png" alt="Logo" width="300" height="200">
+  <img src="https://raw.githubusercontent.com/RavidDimant/JobMatcher-Aligning-LinkedIn-Profiles-with-Scraped-Job-Listings/main/Survey/logo.png" alt="Logo" >
 
 
 
