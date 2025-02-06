@@ -84,10 +84,9 @@ Career Cupid's job matching algorithm integrates multiple techniques to improve 
 
 ### Scoring Function
 We compute the final match score as:
-$x^2$
-Score = 0.33 x similarity_title + 0.225 × similarity_description + 0.225 × similarity_project + 0.05 × score_location + 0.01 × score_hobbies + 0.15 × score_skills + 0.01 × score_job-type
+\[Score = 0.33 \cdot similarity_title + 0.225 \cdot similarity_description + 0.225 \cdot similarity_project + 0.05 \cdot score_location + 0.01 \cdot score_hobbies + 0.15 \cdot score_skills + 0.01 \cdot score_job-type\]
 
-
+This multi-faceted approach significantly improves job recommendations, aligning them with user interests and backgrounds. The model successfully avoids misleading matches (e.g., interpreting "hungry to learn" as a food industry preference) and instead prioritizes roles that better fit the candidate's expertise and aspirations.
 
 # Results
 Career Cupid significantly improves job matching by incorporating AI-driven personalization beyond traditional keyword-based approaches. For example, Autumn Venson-Roscoe, a B.A. in Communication Studies graduate, was initially matched with Sr. Optical Engineer (Exterior Lighting) and Barista, roles unrelated to her expertise. After applying Career Cupid’s recommendation model, her top matches became Copywriter and Interactive Producer, aligning with her skills in social media management, marketing, and problem-solving, as well as her hobbies in photography, pop culture, and networking.
