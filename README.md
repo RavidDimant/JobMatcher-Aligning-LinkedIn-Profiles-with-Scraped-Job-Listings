@@ -27,26 +27,30 @@
 # Contents
 - [Overview](#Overview)
 - [Abstract](#Abstract)
-- [Install](#install)
-- [Running the code](#Running-the-code)
-  - [RAG-based Worm](#RAG-based-Worm) 🤖
-  - [FlowSteering Worm](#FlowSteering-Worm) 📩
-    - [Simulating a GenAI LLaVa Ecosystem](#Simulating-a-GenAI-LLaVa-Ecosystem)
-- [Citation](#citation)
+- [Installation](#Installation)
+- [Running the Code](#Running-the-Code)
+  - [Survey Data Processing](#Survey-Data-Processing) 📊
+  - [Job Matching Algorithm](#Job-Matching-Algorithm) 🎯
+    - [Recommendation Model](#Recommendation-Model) 🤖
+- [Citation](#Citation)
+
 
   
 # Overview
 
-We created a computer worm that targets GenAI-powered applications and demonstrated it against GenAI-powered email assistants in two use cases (spamming and exfiltrating personal data), under two settings (black-box and white-box accesses), using two types of input data (text and images) and against three different GenAI models (Gemini Pro, ChatGPT 4.0, and LLaVA).
+Career Cupid is a job-matching system that goes beyond traditional keyword-based and LinkedIn-centric approaches. By integrating job listings from multiple platforms (Indeed, Dice, SimplyHired) and enriching them with user-specific survey data, Career Cupid provides a holistic job recommendation experience. Unlike existing job-matching models that primarily focus on skills and job titles, our system factors in personal interests, hobbies, and career aspirations, ensuring a deeper alignment between candidates and job opportunities.
 
-| Exfiltrating personal data                  | Spamming                                   |
-|---------------------------------------------|--------------------------------------------|
-| ![Image 1 Description](Assets/InfoLeak.png) | ![Image 2 Description](Assets/DJISpam.png) |
+To achieve this, we developed a data-driven pipeline that:
+
+1. Collects and integrates over 30,000 job listings from major job platforms while overcoming scraping challenges.
+2. Enhances job recommendations by incorporating user survey responses, including skills, hobbies, and career preferences.
+3. Leverages AI-driven techniques such as TF-IDF and BERT embeddings to compute job-profile similarity.
+4. Refines the matching algorithm by considering factors like job location, past job titles, and project descriptions.
+Through this approach, Career Cupid bridges the gap between what users can do and what they love to do, improving job satisfaction and career fulfillment.
 
 # Abstract
 
-In the past year, numerous companies have incorporated Generative AI (GenAI) capabilities into new and existing applications, forming interconnected Generative AI (GenAI) ecosystems consisting of semi/fully autonomous agents powered by GenAI services. While ongoing research highlighted risks associated with the GenAI layer of agents (e.g., dialog poisoning, privacy leakage, jailbreaking), a critical question emerges: Can attackers develop malware to exploit the GenAI component of an agent and launch cyber-attacks on the entire GenAI ecosystem? 
-This paper introduces Morris II, the first worm designed to target GenAI ecosystems through the use of adversarial self-replicating prompts. The study demonstrates that attackers can insert such prompts into inputs that, when processed by GenAI models, prompt the model to replicate the input as output (replication) and engage in malicious activities (payload). Additionally, these inputs compel the agent to deliver them (propagate) to new agents by exploiting the connectivity within the GenAI ecosystem. We demonstrate the application of Morris II against GenAI-powered email assistants in two use cases (spamming and exfiltrating personal data), under two settings (black-box and white-box accesses), using two types of input data (text and images). The worm is tested against three different GenAI models (Gemini Pro, ChatGPT 4.0, and LLaVA), and various factors (e.g., propagation rate, replication, malicious activity) influencing the performance of the worm are evaluated.
+Traditional job-matching systems rely heavily on keyword-based searches and LinkedIn profile data, often overlooking the personal interests and aspirations that contribute to job satisfaction. *Career Cupid* introduces a novel job recommendation framework that enhances traditional job-matching techniques with user-centric personalization. By aggregating big data from multiple job platforms, including *Indeed, Dice, and SimplyHired*, and integrating a custom survey-driven approach, our system refines job recommendations beyond technical skills and job titles. To achieve this, we scrape and integrate job data without relying on external APIs, connect job listings to LinkedIn profiles to ensure relevance, and incorporate survey responses to capture users' hobbies, interests, and ideal job preferences. Leveraging AI models such as **TF-IDF, BERT embeddings, and cosine similarity**, *Career Cupid* enhances job-profile matching accuracy. The effectiveness of our approach is evaluated through data visualization and embedding-based similarity analysis. Results demonstrate that integrating **AI-driven recommendations** with **personalized survey data** leads to more meaningful and accurate job matches than traditional methods. Our findings suggest that considering user passions alongside technical skills significantly improves job satisfaction and career alignment.
 
 
 # Install
@@ -194,33 +198,14 @@ to execute and simulate a comprehensive evaluation involving various end user cl
 please refer to [ApplicationCode](FlowSteering/ApplicationCode/README.md) Readme file.
 
 
-# Assets
+# Result
+Career Cupid significantly improves job matching by incorporating AI-driven personalization beyond traditional keyword-based approaches. For example, Autumn Venson-Roscoe, a B.A. in Communication Studies graduate, was initially matched with Sr. Optical Engineer (Exterior Lighting) and Barista, roles unrelated to her expertise. After applying Career Cupid’s recommendation model, her top matches became Copywriter and Interactive Producer, aligning with her skills in social media management, marketing, and problem-solving, as well as her hobbies in photography, pop culture, and networking.
 
-The assets folder contains some images used in the experiments and the results of the perturbation process. The images are divided into two subfolders: OriginalProcessedImages and PerturbOutput.
+This transformation demonstrates how Career Cupid refines job recommendations by considering both professional qualifications and personal interests, leading to more relevant and fulfilling career opportunities.
 
-The OriginalProcessedImages folder contains the original images used in the experiments after resizing,
-while the PerturbOutput folder contains the perturbed images generated by the perturbation process.
-
-
-| OriginalProcessedImage                                                          | PerturbatedImage                                                                             |
+| recommendations before                                                          |  recommendations before                                                                       |
 |---------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
-| ![Image 1 Description](FlowSteering/assets/OriginalProcessedImages/America.png) | ![Image 2 Description](FlowSteering/assets/PerturbatedImages/AmericaPerturbClassForward.png) |
-| ![Image 3 Description](FlowSteering/assets/OriginalProcessedImages/Cat.png)     | ![Image 4 Description](FlowSteering/assets/PerturbatedImages/CatPerturbClassForward.png)     |
-| ![Image 5 Description](FlowSteering/assets/OriginalProcessedImages/Dji.png)     | ![Image 6 Description](FlowSteering/assets/PerturbatedImages/DjiPerturbClassForward.png)     |
-| ![Image 7 Description](FlowSteering/assets/OriginalProcessedImages/Trump.png)   | ![Image 8 Description](FlowSteering/assets/PerturbatedImages/TrumpPerturbClassForward.png)   |
+|Sr. Optical Engineer Exterior Lighting |Copywriter |
+|Barista|  Interactive Producer     |
 
-
-
-# Citation
-https://arxiv.org/abs/2403.02817
-```
-@misc{cohen2024comes,
-      title={Here Comes The AI Worm: Unleashing Zero-click Worms that Target GenAI-Powered Applications}, 
-      author={Stav Cohen and Ron Bitton and Ben Nassi},
-      year={2024},
-      eprint={2403.02817},
-      archivePrefix={arXiv},
-      primaryClass={cs.CR}
-}
-```
 
