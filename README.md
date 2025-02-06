@@ -67,9 +67,8 @@ We use a list of company keywords sourced from a dataset provided by the course 
 **Note**: You can also run the model using our pre-collected dataset, which is available via the link in the Data.md file. We've already scraped over 10,000 job listings from each site for you!
 
 ## Survey
-The Career Cupid survey is a Streamlit-based web form designed to collect user input for job-matching. This section provides an overview of how the survey works behind the scenes, including data handling, response validation, and storage.
+The Career Cupid survey is a Streamlit-based web form designed to collect user input for job-matching.
 Click on the survey link:  <a href="https://career-cupid.streamlit.app/"> Career Cupid Survey </a>&nbsp;
-The survey is hosted on Streamlit, ensuring an interactive and user-friendly experience.
 ## Job Matching Algorithm
 
 
