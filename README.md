@@ -57,7 +57,9 @@ Traditional job-matching systems rely heavily on keyword-based searches and Link
 The first step is to gather the data for the project. Navigate to the Scrapers directory and run each of the scraper files. Each scraper has a default maximum run time of 10 hours. You can adjust the amount of time you want to collect job listings from the sites (Dice, Simply Hired, and Indeed) by modifying the following line in each scraper:
 ```python
 # maximum runtime in seconds (10 hours), theoretically, we can scrape for years
-max_runtime = 60 * 60 * 10```
+max_runtime = 60 * 60 * 10
+
+```
 Note: You can also run the model using our pre-collected dataset, which is available via the link in the Data.md file. We've already scraped over 10,000 job listings from each site for you!
 
 ## Survey
