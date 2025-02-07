@@ -11,7 +11,7 @@
 <br>
     <a href="https://career-cupid.streamlit.app/">Survey</a> |
     <a href="https://youtu.be/dMre1jKHiUU?si=0qYKhWtw6YWmRANX">Trailer</a> |
-    <a href="https://arxiv.org/abs/2403.02817">BTS</a>
+    <a href="https://technion.zoom.us/rec/share/Wbdm8tMqtsds-r_BuEm2eyGpXcv2gdeWMwOVtrrSaSlIZFYhnxlfgL_KLencCyOj.8Knd8YlDU9qiOC-k?startTime=1738918216000">BTS</a>
 
 </p>
 
